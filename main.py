@@ -60,4 +60,37 @@ plt.xlabel("Batimentos")
 plt.ylabel("Colesterol")
 plt.show()
 
+# %%
+# Associação de Variáveis Categóricas
+df_avc = df.select_dtypes(include="object")
+df_avc
 
+# %%
+from scipy.stats import chi2_contingency
+
+# %%
+obs = pd.crosstab(df_avc["Sexo"], df["DoencaCard"]) # relaciona informação de duas colunas
+obs
+
+# %%
+chi2, p_value, gl, expected = chi2_contingency(obs)
+"""
+chi2_contingency: O teste de Qui-Quadrado de independencia, 
+serve para verificar uma associação entre duas variaveis,
+neste caso, a relaçao entre sexo e a presença de doença cardiovascular
+
+Saidas:
+- chi2: a estatisca de teste calculada,
+quanto maior este valor, mais os dados divergem do que seria esperado caso fossem independentes
+(mais relacionados sao)
+
+- p_value: O valor mais importante, se este valor for menor que 0,05(geralmente), 
+descarta-se a hipotese nula e conclui que as variaveis estão relacionadas
+
+- gl: grau de liberdade(dof - degrees of freedom) é calculado com base no numero de linhas e colunas da tabela
+
+- expected: é uma nova tabela com as mesmas dimensoes do original(neste caso um 2x2), porem, 
+contendo os valores esperadaos caso as variaveis fossem independentes
+"""
+# %%
+print(f"{chi2}, \n{p_value}, \n{gl}, \n{expected}")
