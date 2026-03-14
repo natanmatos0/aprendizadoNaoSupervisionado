@@ -92,5 +92,16 @@ descarta-se a hipotese nula e conclui que as variaveis estão relacionadas
 - expected: é uma nova tabela com as mesmas dimensoes do original(neste caso um 2x2), porem, 
 contendo os valores esperadaos caso as variaveis fossem independentes
 """
+
 # %%
 print(f"{chi2}, \n{p_value}, \n{gl}, \n{expected}")
+
+# %%
+alpha = 0.05
+
+# p_valor < alpha --> rejeita a hipotese (existe independencia entre as variveis)
+# p_valor > alpha --> aceita a hipotese (existe independencia entre as variveis)
+
+# %%
+alpha > p_value
+# %%
