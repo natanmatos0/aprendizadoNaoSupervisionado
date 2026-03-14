@@ -104,4 +104,30 @@ alpha = 0.05
 
 # %%
 alpha > p_value
+
+# %%
+# Correlação de variaveis numericas
+df_num = df.select_dtypes(include="number")
+df_num
+
+# %%
+"""
+.corr(): calcula a matriz de correlação de um df, 
+o valor de intersecção de uma com uma coluna é chamado de 
+COEFICIENTE DE RELAÇÃO DE PEARSON(r) dentre as duas variaveis
+como lê-lo
+r = 1: correlação positiva perfeita, os dois sao diretamente proporcionais
+r = 0 nao existe correlaçao
+r = -1: correlação negativa perfeita, os dois sao inversamente proporcionais
+"""
+corr = df_num.corr()
+corr
+
+# %%
+plt.figure(figsize=(10*cms, 7*cms))
+plt.imshow(corr.values)
+plt.xticks(range(len(corr.columns)), corr.columns, rotation=45)
+plt.yticks(range(len(corr.columns)), corr.columns)
+plt.colorbar(label="Correlação")
+plt.show()
 # %%
